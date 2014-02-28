@@ -21,6 +21,7 @@ PATH
       mongoid-app_settings
       rails (~> 3.1)
       rails-backbone
+      react-rails (~> 0.9)
       ryansch-andand
       sass-rails (~> 3.2)
       susy (~> 1.0.rc)
@@ -232,6 +233,11 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    react-rails (0.9.0.0)
+      execjs
+      rails (>= 3.1)
+      react-source (= 0.9.0)
+    react-source (0.9.0)
     ref (1.0.5)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)

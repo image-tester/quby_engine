@@ -8,6 +8,7 @@ require 'compass-rails'
 require 'jquery-rails'
 require 'fd-slider-rails'
 require 'backbone-rails'
+require 'react-rails'
 require 'susy'
 require 'andand'
 require 'coffee-filter'
@@ -20,6 +21,8 @@ module Quby
       app.config.assets.precompile += ["quby/application.css", "quby/print.css", "quby/dialog.css"]
       app.config.assets.precompile += ["quby/application.js", "quby/answers.js", "quby/disable_keys.js",
                                        "quby/printer.js"]
+
+      app.config.react.variant = :development
     end
   end
 end

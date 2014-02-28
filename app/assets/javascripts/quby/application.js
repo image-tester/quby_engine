@@ -10,6 +10,8 @@
 //= require backbone
 //= require ./backbone/quby
 
+//= require react
+
 //= require jquery-ui
 //= require jquery_placeholder
 //= require jquery.scrollTo-min.js

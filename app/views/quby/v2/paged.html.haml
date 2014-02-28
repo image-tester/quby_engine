@@ -1,0 +1,16 @@
+- content_for(:page_title, @questionnaire.title)
+- content_for(:extra_css, @questionnaire.extra_css)
+
+:javascript
+  // for setting values of raw_content
+  window.extra_question_values = #{@answer.extra_question_values};
+  // for showing validations of raw content
+  window.extra_failed_validations = #{@answer.extra_failed_validations};
+  window.questionnaire = #{@questionnaire.to_json}
+  window.answer = new Quby.Models.Answer(#{@answer.to_json})
+
+  $(function() {
+    React.renderComponent(Quby.V2.Questionnaire({questionnaire: questionnaire, answer: answer}), $("#answer")[0])
+  });
+
+#answer

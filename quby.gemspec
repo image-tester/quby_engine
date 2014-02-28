@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "susy", "~> 1.0.rc"
   s.add_dependency "coffee-filter"
   s.add_dependency "rails-backbone"
+  s.add_dependency 'react-rails', '~> 0.9'
 
   # Helpers
   s.add_dependency "ryansch-andand"
