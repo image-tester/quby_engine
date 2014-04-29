@@ -102,12 +102,12 @@ feature 'question with a depends_on', js: true do
     questionnaire = inject_questionnaire("depends_test", <<-END)
       panel do
         question :v1, type: :scale, required: true, depends_on: [:v2] do
-          option :a1
-          option :a2
+          option :a1, value: 1, description: ''
+          option :a2, value: 1, description: ''
         end
 
         question :v2, type: :check_box do
-          option :v2_a, description: 'vraag 2'
+          option :v2_a, value: 1, description: 'vraag 2'
         end
       end; end_panel
     END

@@ -9,7 +9,7 @@ module Quby
         invalid_definition = <<-END
           question :v_1, type: :radio do
             title "Testvraag"
-            option :a1, hides_questions: [:v_2]
+            option :a1, value: 1, description: "", hides_questions: [:v_2]
           end
         END
         DefinitionValidator.new(questionnaire, invalid_definition).validate
@@ -21,7 +21,7 @@ module Quby
         invalid_definition = <<-END
           question :v_1, type: :radio do
             title "Testvraag"
-            option :a1, hides_questions: [:v_1_a1_sq] do
+            option :a1, value: 1, description: "", hides_questions: [:v_1_a1_sq] do
               question :v_1_a1_sq, type: :string
             end
           end
@@ -35,7 +35,7 @@ module Quby
         definition = <<-END
           question :v_1, type: :radio do
             title "Testvraag"
-            option :a1, hides_questions: [:v_2]
+            option :a1, value: 1, description: "", hides_questions: [:v_2]
           end
 
           question :v_2, type: :textarea
@@ -49,7 +49,7 @@ module Quby
         invalid_definition = <<-END
           question :v_1, type: :radio do
             title "Testvraag"
-            option :a1, shows_questions: [:v_2]
+            option :a1, value: 1, description: "", shows_questions: [:v_2]
           end
         END
         DefinitionValidator.new(questionnaire, invalid_definition).validate
@@ -61,7 +61,7 @@ module Quby
         invalid_definition = <<-END
           question :v_1, type: :radio do
             title "Testvraag"
-            option :a1, shows_questions: [:v_1_a1_sq] do
+            option :a1, value: 1, description: "", shows_questions: [:v_1_a1_sq] do
               question :v_1_a1_sq, type: :string
             end
           end
@@ -75,7 +75,7 @@ module Quby
         definition = <<-END
           question :v_1, type: :radio do
             title "Testvraag"
-            option :a1, shows_questions: [:v_2]
+            option :a1, value: 1, description: "", shows_questions: [:v_2]
           end
 
           question :v_2, type: :textarea
@@ -89,8 +89,8 @@ module Quby
         invalid_definition = <<-END
           question :v_1, type: :radio do
             title "Testvraag"
-            option :a1
-            option :a2, shows_questions: [:v_1_a1_sq] do
+            option :a1, value: 1, description: ""
+            option :a2, value: 2, description: "", shows_questions: [:v_1_a1_sq] do
               question :v_1_a1_sq, type: :string, default_invisible: true
             end
           end
@@ -114,13 +114,13 @@ module Quby
         long_key = <<-END
           question :questionthree, type: :radio do
             title "Testvraag"
-            option :a1, description: 'some_description'
+            option :a1, value: 1, description: 'some_description'
           end
         END
         valid_key = <<-END
           question :v_12345678901, type: :radio do
             title "Testvraag"
-            option :a1, description: 'some_description'
+            option :a1, value: 1, description: 'some_description'
           end
         END
         DefinitionValidator.new(questionnaire, long_key).validate.should be_false
@@ -131,13 +131,13 @@ module Quby
         invalid_key = <<-END
           question :one, type: :radio do
             title "Testvraag"
-            option :a1, description: 'some_description', hides_questions: [:two]
+            option :a1, value: 1, description: 'some_description', hides_questions: [:two]
           end
         END
         valid_key = <<-END
           question :v_2, type: :radio do
             title "Testvraag"
-            option :a1, description: 'some_description'
+            option :a1, value: 1, description: 'some_description'
           end
         END
         DefinitionValidator.new(questionnaire, invalid_key).validate.should be_false
@@ -148,15 +148,15 @@ module Quby
         invalid_keys = <<-END
           question :v_4, type: :check_box do
             title "Testvraag met een check_box"
-            option :q1, description: 'some_description'
+            option :q1, value: 1, description: 'some_description'
           end
         END
         valid_keys = <<-END
           question :v_4, type: :check_box do
             title "Testvraag met een check_box"
-            option :v_q1, description: 'some_description'
+            option :v_q1, value: 1, description: 'some_description'
             inner_title 'blaat'
-            option :v_q2, description: 'more_description'
+            option :v_q2, value: 1, description: 'more_description'
           end
         END
         DefinitionValidator.new(questionnaire, invalid_keys).validate.should be_false
@@ -167,13 +167,13 @@ module Quby
         invalid_keys = <<-END
           question :v_4, type: :check_box do
             title "Testvraag met een check_box"
-            option :v_q1_has_a_very_long_key, description: 'some_description'
+            option :v_q1_has_a_very_long_key, value: 1, description: 'some_description'
           end
         END
         valid_keys = <<-END
           question :v_4, type: :check_box do
             title "Testvraag met een check_box"
-            option :v_q1, description: 'some_description'
+            option :v_q1, value: 1, description: 'some_description'
           end
         END
         DefinitionValidator.new(questionnaire, invalid_keys).validate.should be_false

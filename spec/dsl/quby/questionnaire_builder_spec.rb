@@ -96,7 +96,7 @@ module Quby
           dsl do
             question :v_1, type: :string
             question :v_2, type: :check_box do
-              option :v_1
+              option :v_1, value: 1, description: ''
             end
           end
         end.to raise_exception
@@ -106,8 +106,8 @@ module Quby
         expect do
           dsl do
             question :v_1, type: :check_box do
-              option :v_2
-              option :v_1
+              option :v_2, value: 1, description: ''
+              option :v_1, value: 1, description: ''
             end
           end
         end.to raise_exception
@@ -117,10 +117,10 @@ module Quby
         expect do
           dsl do
             question :v_1, type: :radio do
-              option :a1
+              option :a1, value: 1, description: ''
             end
             question :v_2, type: :check_box do
-              option :v_1_a1
+              option :v_1_a1, value: 1, description: ''
             end
           end
         end.to raise_exception
@@ -129,7 +129,7 @@ module Quby
       it 'sets a depends_on key correctly' do
         dsl do
           question :v_1, type: :check_box do
-            option :v_1_a
+            option :v_1_a, value: 1, description: ''
           end
           question :v_2, type: :string, depends_on: [:v_1]
         end
@@ -149,10 +149,10 @@ module Quby
       it 'sets the parent option key on subquestions correctly' do
         dsl do
           question :v_1, type: :check_box do
-            option :v_1a do
+            option :v_1a, value: 1, description: '' do
               question :v_2, type: :string
             end
-            option :v_1b
+            option :v_1b, value: 1, description: ''
           end
         end
         questionnaire.question_hash[:v_2].parent_option_key.should == :v_1a

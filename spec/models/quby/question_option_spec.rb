@@ -6,10 +6,10 @@ module Quby
       questionnaire = Quby::Questionnaire.new("test", <<-END)
         question :one, type: :radio do
           title "Testvraag"
-          option :a1, hides_questions: [:two]
-          option :a2, hides_questions: [:three]
-          option :a3, hides_questions: [:four]
-          option :a4, shows_questions: [:five]
+          option :a1, value: 1, description: "Option oneone", hides_questions: [:two]
+          option :a2, value: 1, description: "Option onetwo", hides_questions: [:three]
+          option :a3, value: 1, description: "Option onethree", hides_questions: [:four]
+          option :a4, value: 1, description: "Option onefour", shows_questions: [:five]
         end
 
         question :two, type: :radio
@@ -19,8 +19,8 @@ module Quby
 
         question :checkb, type: :check_box do
           title "Checkbox vraag"
-          option :sixone
-          option :sixtwo
+          option :sixone, value: 1, description: "Option sixone"
+          option :sixtwo, value: 2, description: "Option sixtwo"
         end
       END
       questionnaire
@@ -52,11 +52,12 @@ module Quby
 
     describe '#key_in_use?' do
       let(:option) do
-        q = Items::Question.new(:v_1, type: :radio)
-        o = QuestionOption.new(:op1, q)
-        q2 = Items::Question.new(:v_1_op1_v1)
-        o.questions << q2
-        o
+        question    = Items::Question.new(:v_1, type: :radio)
+        subquestion = Items::Question.new(:v_1_op1_v1)
+
+        question_option = QuestionOption.new(:op1, question, value: 1, description: "")
+        question_option.questions << subquestion
+        question_option
       end
       it 'bla' do
         expect(option.input_key).to eq :v_1_op1

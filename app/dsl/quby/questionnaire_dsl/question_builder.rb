@@ -28,7 +28,7 @@ module Quby
       end
 
       def inner_title(value)
-        op = QuestionOption.new(nil, @question, inner_title: true, description: value)
+        op = QuestionOption.new(nil, @question, value: nil, inner_title: true, description: value)
         @question.options << op
       end
 

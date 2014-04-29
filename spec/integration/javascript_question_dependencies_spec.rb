@@ -41,7 +41,7 @@ feature 'Dependencies between questions', js: true do
       questionnaire = inject_questionnaire("test", <<-END)
       panel do
         question :v0, type: :radio do
-          option :a1, description: "Show v1", shows_questions: [:v1]
+          option :a1, value: 1, description: "Show v1", shows_questions: [:v1]
         end
         question :v1, type: :radio, required: true, default_invisible: true do
           option :a1, value: 1, description: "Ja"

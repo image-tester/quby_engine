@@ -7,27 +7,27 @@ module Quby
       questionnaire = Quby::Questionnaire.new("test", <<-END)
         question :radio, type: :radio, depends_on: [:check] do
           title "Testvraag"
-          option :rad1
-          option :rad2
+          option :rad1, value: 1, description: ''
+          option :rad2, value: 2, description: ''
         end
 
         question :check, type: :check_box do
           title "Checkbox vraag"
-          option :check1
+          option :check1, value: 1, description: ''
           inner_title 'foobar'
-          option :check2 do
+          option :check2, value: 1, description: '' do
             question :subquestion, type: :string
           end
         end
 
         question :scale, type: :scale do
-          option :scale1
-          option :scale2
+          option :scale1, value: 1, description: ''
+          option :scale2, value: 2, description: ''
         end
 
         question :select, type: :scale do
-          option :select1
-          option :select2
+          option :select1, value: 1, description: ''
+          option :select2, value: 2, description: ''
         end
 
         question :int, type: :integer
@@ -71,7 +71,7 @@ module Quby
     describe '#key_in_use?' do
       let(:question) do
         q = Items::Question.for(:radio).new(:v_1, type: :radio)
-        o = QuestionOption.new(:op1, q)
+        o = QuestionOption.new(:op1, q, value: 1, description: '')
         q.options << o
         q
       end

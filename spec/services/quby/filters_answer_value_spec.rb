@@ -7,14 +7,14 @@ module Quby
       questionnaire = Quby::Questionnaire.new("test", <<-END)
         question :v_6, type: :radio do
           title "Testvraag"
-          option :rad1
-          option :rad2
+          option :rad1, value: 1, description: ""
+          option :rad2, value: 2, description: ""
         end
 
         question :v_7, type: :check_box do
           title "Checkbox vraag"
-          option :v_7a1
-          option :v_7a2
+          option :v_7a1, value: 1, description: ""
+          option :v_7a2, value: 1, description: ""
         end
 
         question :date, type: :date

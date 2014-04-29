@@ -10,27 +10,32 @@ module Quby
     attr_accessor :hidden
     attr_accessor :placeholder
     attr_accessor :question
-    attr_accessor :view_id
 
     attr_accessor :start_chosen
 
-    def initialize(key, question, options = {})
-      @key         = key
-      @question    = question
-      @value       = options[:value]
-      @description = options[:description]
-      @questions   = []
-      @inner_title = options[:inner_title]
-      @hides_questions = options[:hides_questions] || []
-      @shows_questions = options[:shows_questions] || []
-      @hidden = options[:hidden] || false
-      @view_id = "answer_#{input_key}"
-      @placeholder = options[:placeholder] || false
+    # rubocop:disable ParameterLists
+    def initialize(key, question, value:, description:,
+                                  inner_title: false, hides_questions: [], shows_questions: [],
+                                  hidden: false, placeholder: false)
+      @key             = key
+      @question        = question
+      @value           = value
+      @description     = description
+      @questions       = []
+      @inner_title     = inner_title
+      @hides_questions = hides_questions
+      @shows_questions = shows_questions
+      @hidden          = hidden
+      @placeholder     = placeholder
       question.extra_data[:placeholder] = key if @placeholder
     end
 
     def input_key
       question.type == :check_box ? @key : "#{question.key}_#{key}".to_sym
+    end
+
+    def view_id
+      "answer_#{input_key}"
     end
 
     def inner_title?

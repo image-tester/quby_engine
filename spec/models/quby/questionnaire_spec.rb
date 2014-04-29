@@ -101,14 +101,14 @@ module Quby
         Quby::Questionnaire.new("test", <<-END)
           question :radio, type: :radio, depends_on: [:check] do
             title "Testvraag"
-            option :rad1
-            option :rad2
+            option :rad1, value: 1, description: ''
+            option :rad2, value: 2, description: ''
           end
 
           question :check, type: :check_box do
             title "Checkbox vraag"
-            option :check1
-            option :check2
+            option :check1, value: 1, description: ''
+            option :check2, value: 1, description: ''
           end
 
           question :int, type: :integer
@@ -149,7 +149,13 @@ module Quby
 
     describe '#to_codebook' do
       it "should be able to generate a codebook" do
-        definition    = "title 'My Test' \n question(:v_1, type: :radio) { option :a1, value: 0; option :a2, value: 1}"
+        definition = """
+          title 'My Test'
+          question(:v_1, type: :radio) do
+            option :a1, value: 0, description: ''
+            option :a2, value: 1, description: ''
+          end
+        """
         questionnaire = Questionnaire.new("test", definition)
         questionnaire.to_codebook.should be
       end
@@ -157,7 +163,10 @@ module Quby
       it "should not break off a codebook when encountering <" do
         definition    = """
           title 'My Test'
-          question(:v_1, type: :radio, title: ' < 20') { option :a1, value: 0; option :a2, value: 1}
+          question(:v_1, type: :radio, title: ' < 20') do
+            option :a1, value: 0, description: ''
+            option :a2, value: 1, description: ''
+          end
         """
         questionnaire = Questionnaire.new("test2", definition)
         questionnaire.to_codebook.should eq "My Test\nDate unknown\n\ntest2_1 radio \n\" < 20\"\n0\t\"\"\n1\t\"\"\n"
