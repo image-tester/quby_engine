@@ -4,10 +4,10 @@ module Quby
       attr_reader :title
       attr_reader :questionnaire
 
-      def initialize(title, options = {})
-        @panel = Quby::Items::Panel.new(options.merge(title: title, items: []))
-        @default_question_options = options[:default_question_options] || {}
-        @questionnaire = options[:questionnaire]
+      def initialize(questionnaire:, default_question_options:)
+        @questionnaire = questionnaire
+        @panel = Quby::Panel.new(questionnaire: questionnaire)
+        @default_question_options = default_question_options || {}
       end
 
       def build

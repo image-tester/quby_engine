@@ -1,19 +1,17 @@
 module Quby
-  class Items::Panel < Item
+  class Panel
     attr_accessor :title
     attr_accessor :items
     attr_accessor :key
     attr_reader :questionnaire
 
-    def initialize(options = {})
-      @questionnaire = options[:questionnaire]
-      @title = options[:title]
-      @key = options[:key]
-      @items = options[:items] || []
+    def initialize(questionnaire:)
+      @questionnaire = questionnaire
+      @items = []
     end
 
     def as_json(options = {})
-      super.merge(title: title, items: items)
+      {class: self.class.to_s, title: title, items: items}
     end
 
     def index

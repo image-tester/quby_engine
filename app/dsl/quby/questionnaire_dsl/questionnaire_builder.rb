@@ -63,8 +63,8 @@ module Quby
         @questionnaire.default_answer_value = value
       end
 
-      def panel(title = nil, options = {}, &block)
-        p = PanelBuilder.new(title, options.merge(default_panel_options))
+      def panel(&block)
+        p = PanelBuilder.new(default_panel_options)
         p.instance_eval(&block)
 
         @questionnaire.instance_eval do
@@ -79,21 +79,21 @@ module Quby
 
       # Short-circuit the question command to perform an implicit panel
       def question(key, options = {}, &block)
-        panel(nil, default_panel_options) do
+        panel do
           question(key, default_question_options(options.merge(questionnaire: @questionnaire)), &block)
         end
       end
 
       # Short-circuit the text command to perform an implicit panel
       def text(value, options = {})
-        panel(nil, default_panel_options) do
+        panel do
           text(value, options)
         end
       end
 
       # Short-circuit the table command to perform an implicit panel
       def table(options = {}, &block)
-        panel(nil, default_panel_options) do
+        panel do
           table(options, &block)
         end
       end
