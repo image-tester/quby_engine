@@ -31,7 +31,7 @@ module Quby
         end
 
         it 'sets the label from a question title when no label is present' do
-          plottable = Quby::Items::Question.new plottable_key, title: 'some_title'
+          plottable = Quby::Items::Question.new plottable_key, title: 'some_title', questionnaire: double.as_null_object
           questionnaire.stub(:find_plottable).with(plottable_key).and_return plottable
           Quby::Charting::Plottable.should_receive(:new)
                                    .with(plottable_key, questionnaire_key: 'questionnaire_key', label: 'some_title')
@@ -39,7 +39,7 @@ module Quby
         end
 
         it 'does not set the label when it is given in the options' do
-          plottable = Quby::Items::Question.new plottable_key, title: 'some_title'
+          plottable = Quby::Items::Question.new plottable_key, title: 'some_title', questionnaire: double.as_null_object
           questionnaire.stub(:find_plottable).with(plottable_key).and_return plottable
           Quby::Charting::Plottable.should_receive(:new)
                                    .with(plottable_key, questionnaire_key: 'questionnaire_key', label: 'some_label')

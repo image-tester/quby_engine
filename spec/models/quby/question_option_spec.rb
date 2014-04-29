@@ -52,13 +52,15 @@ module Quby
 
     describe '#key_in_use?' do
       let(:option) do
-        question    = Items::Question.new(:v_1, type: :radio)
-        subquestion = Items::Question.new(:v_1_op1_v1)
+        questionnaire = double.as_null_object
+        question      = Items::Question.new(:v_1, type: :radio, questionnaire: questionnaire)
+        subquestion   = Items::Question.new(:v_1_op1_v1, questionnaire: questionnaire)
 
         question_option = QuestionOption.new(:op1, question, value: 1, description: "")
         question_option.questions << subquestion
         question_option
       end
+
       it 'bla' do
         expect(option.input_key).to eq :v_1_op1
       end
@@ -66,9 +68,11 @@ module Quby
       it 'returns true if the key is the option key' do
         expect(option.key_in_use?(:v_1_op1)).to eql true
       end
+
       it 'returns true if the key is a sub questions key' do
         expect(option.key_in_use?(:v_1_op1_v1)).to eql true
       end
+
       it 'return false if the key is not in use' do
         expect(option.key_in_use?(:v_1_op1_v2)).to eql false
       end

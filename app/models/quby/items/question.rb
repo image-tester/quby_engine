@@ -127,7 +127,7 @@ module Quby
       super(options)
       @extra_data ||= {}
       @options = []
-      @questionnaire = options[:questionnaire]
+      @questionnaire = options.fetch(:questionnaire)
       @key = key
       @type = options[:type]
       @as = options[:as]
@@ -196,6 +196,24 @@ module Quby
       end
     end
     # rubocop:enable CyclomaticComplexity
+
+    def add_option(key, attributes)
+      option = QuestionOption.new(key, self, attributes)
+
+      if questionnaire.key_in_use?(option.input_key) || key_in_use?(option.input_key)
+        fail "#{questionnaire.key}:#{@question.key}:#{option.key}: " \
+              "A question or option with input key #{option.input_key} is already defined."
+      else
+        options << option
+        option
+      end
+    end
+
+    def add_inner_title(title)
+      option = QuestionOption.new(nil, self, value: nil, inner_title: true, description: title)
+      options << option
+      option
+    end
 
     # rubocop:disable AccessorMethodName
     def set_depends_on(keys)

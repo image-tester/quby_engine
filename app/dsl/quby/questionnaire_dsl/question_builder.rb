@@ -28,8 +28,7 @@ module Quby
       end
 
       def inner_title(value)
-        op = QuestionOption.new(nil, @question, value: nil, inner_title: true, description: value)
-        @question.options << op
+        @question.add_inner_title(value)
       end
 
       def description(value)
@@ -70,14 +69,8 @@ module Quby
         @question.labels << value
       end
 
-      def option(key, options = {}, &block)
-        op = QuestionOption.new(key, @question, options)
-        if @questionnaire.key_in_use?(op.input_key) || @question.key_in_use?(op.input_key)
-          fail "#{questionnaire.key}:#{@question.key}:#{op.key}: " \
-                "A question or option with input key #{op.input_key} is already defined."
-        end
-
-        @question.options << op
+      def option(key, attributes = {}, &block)
+        @question.add_option(key, attributes)
         instance_eval(&block) if block
       end
 

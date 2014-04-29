@@ -70,7 +70,7 @@ module Quby
 
     describe '#key_in_use?' do
       let(:question) do
-        q = Items::Question.for(:radio).new(:v_1, type: :radio)
+        q = Items::Question.for(:radio).new(:v_1, type: :radio, questionnaire: double.as_null_object)
         o = QuestionOption.new(:op1, q, value: 1, description: '')
         q.options << o
         q
