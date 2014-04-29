@@ -17,10 +17,5 @@ module Quby
         text.to_s.should == @markdown_result
       end
     end
-
-    it "should be valid for any hash" do
-      text = Quby::Items::Text.new(@some_string)
-      text.validate_answer({}).should be_true
-    end
   end
 end

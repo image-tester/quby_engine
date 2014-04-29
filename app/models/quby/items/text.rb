@@ -32,10 +32,6 @@ module Quby
       "text"
     end
 
-    def validate_answer(answer_hash)
-      true
-    end
-
     def ==(other)
       case other.class
       when String
