@@ -201,7 +201,7 @@ module Quby
       option = QuestionOption.new(key, self, attributes)
 
       if questionnaire.key_in_use?(option.input_key) || key_in_use?(option.input_key)
-        fail "#{questionnaire.key}:#{@question.key}:#{option.key}: " \
+        fail "#{questionnaire.key}:#{key}:#{option.key}: " \
               "A question or option with input key #{option.input_key} is already defined."
       else
         options << option
