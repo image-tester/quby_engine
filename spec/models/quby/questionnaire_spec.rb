@@ -176,12 +176,12 @@ module Quby
         definition    = """
           title 'My Test'
           question(:v_1, type: :check_box) do
-            option :v_1_a1, value: 0 do
+            option :v_1_a1, value: 0, description: '' do
               question :v_1_a1_1, type: :string
               question :v_1_a1_2, type: :string
             end
             inner_title 'make it complex'
-            option :v_1_a2, value: 1 do
+            option :v_1_a2, value: 1, description: '' do
               question :v_1_a2_1, type: :string
             end
           end
