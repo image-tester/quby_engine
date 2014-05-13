@@ -104,8 +104,8 @@ module Quby
       #   q01 + q02 + q03
       # end
       def variable(key, options = {}, &block)
-        s = ScoreBuilder.new(key, options, &block)
-        @questionnaire.add_score_calculation s.build
+        score_builder = ScoreBuilder.new(key, options, &block)
+        @questionnaire.add_score_calculation score_builder.build
       end
 
       def score(key, options = {}, &block)
