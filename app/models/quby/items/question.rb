@@ -165,7 +165,9 @@ module Quby
       @input_data[:value_tooltip] = true if options[:value_tooltip]
 
       # Require subquestions of required questions by default
-      options[:required] = true if @parent.andand.validations.andand.first.andand[:type] == :requires_answer
+      if @parent && @parent.validations.any? { |validation| validation[:type] == :requires_answer }
+        options[:required] = true
+      end
       @validations << {type: :requires_answer, explanation: options[:error_explanation]} if options[:required]
 
       if @type == :float
