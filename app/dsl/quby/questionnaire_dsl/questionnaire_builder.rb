@@ -80,7 +80,7 @@ module Quby
       # Short-circuit the question command to perform an implicit panel
       def question(key, options = {}, &block)
         panel do
-          question(key, default_question_options(options.merge(questionnaire: @questionnaire)), &block)
+          question(key, options, &block)
         end
       end
 
