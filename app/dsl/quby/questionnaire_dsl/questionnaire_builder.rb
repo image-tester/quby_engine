@@ -63,6 +63,10 @@ module Quby
         @questionnaire.default_answer_value = value
       end
 
+      def default_question_options(options = {})
+        @default_question_options.merge!(options)
+      end
+
       def panel(&block)
         p = PanelBuilder.new(default_panel_options)
         p.instance_eval(&block)
@@ -71,10 +75,6 @@ module Quby
           @panels ||= []
           @panels << p.build
         end
-      end
-
-      def default_question_options(options = {})
-        @default_question_options.merge!(options)
       end
 
       # Short-circuit the question command to perform an implicit panel
