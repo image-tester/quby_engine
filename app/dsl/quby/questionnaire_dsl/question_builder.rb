@@ -70,8 +70,12 @@ module Quby
       end
 
       def option(key, attributes = {}, &block)
-        @question.add_option(key, attributes)
-        instance_eval(&block) if block
+        question_option = QuestionOptionBuilder.new(questionnaire: @questionnaire,
+                                                    question: @question,
+                                                    key: key,
+                                                    attributes: attributes,
+                                                    default_question_options: @default_question_options).build(&block)
+        @question.add_option(question_option)
       end
 
       def title_question(key, options = {}, &block)
@@ -90,21 +94,6 @@ module Quby
 
         @questionnaire.question_hash[key] = question
         @title_question = question
-      end
-
-      def question(key, options = {}, &block)
-        if @questionnaire.key_in_use? key
-          fail "#{@questionnaire.key}:#{key}: A question or option with input key #{key} is already defined."
-        end
-
-        q = QuestionBuilder.new(key, @default_question_options.merge(options)
-                                                              .merge(questionnaire: @questionnaire,
-                                                                     parent: @question,
-                                                                     parent_option_key: @question.options.last.key))
-        q.instance_eval(&block) if block
-        question = q.build
-        @questionnaire.question_hash[key] = question
-        @question.options.last.questions << question
       end
 
       def depends_on(keys)

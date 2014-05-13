@@ -199,9 +199,7 @@ module Quby
     end
     # rubocop:enable CyclomaticComplexity
 
-    def add_option(key, attributes)
-      option = QuestionOption.new(key, self, attributes)
-
+    def add_option(option)
       if questionnaire.key_in_use?(option.input_key) || key_in_use?(option.input_key)
         fail "#{questionnaire.key}:#{key}:#{option.key}: " \
               "A question or option with input key #{option.input_key} is already defined."
