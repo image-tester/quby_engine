@@ -1,5 +1,5 @@
 @mixin paged-desktop($width, $columns) {
-  @include at-breakpoint($width $columns lt-ie9) {
+  @include susy-breakpoint($width, $columns, lt-ie9) {
     $label-columns: 8;
     $field-columns: $columns - $label-columns;
     $grid-padding: 2em;
@@ -20,7 +20,7 @@
     }
 
     .item {
-      @include span-columns($columns omega);
+      @include span(last $columns);
 
       margin-bottom: 18px;
     }
@@ -29,26 +29,26 @@
       &.radio,
       &.check_box {
         .option {
-          @include span-columns($columns omega);
+          @include span(last $columns);
 
-          .radiocheckwrapper { @include span-columns(1); }
+          .radiocheckwrapper { @include span(1); }
           .labelwrapper {
-            @include span-columns($columns - 1 omega);
+            @include span(last $columns - 1);
           }
 
           &.show_values {
-            .value { @include span-columns(1); }
+            .value { @include span(1); }
             .labelwrapper {
-              @include span-columns($columns - 2 omega);
+              @include span(last $columns - 2);
             }
           }
 
           .subquestions {
             @include pre(1);
-            @include span-columns(23-$label-columns);
+            @include span(23-$label-columns);
 
             .item {
-              @include span-columns(23-$label-columns);
+              @include span(23-$label-columns);
               input { width: auto; }
             }
 
@@ -63,18 +63,18 @@
           }
         }
 
-        .inner-title { @include span-columns($columns omega); }
+        .inner-title { @include span(last $columns); }
       }
 
       &.string,
       &.textarea {
-        input, textarea { @include span-columns($columns omega); }
+        input, textarea { @include span(last $columns); }
         .sized { width: auto; }
       }
 
       &.integer.slider,
       &.float.slider {
-        .slider { @include span-columns($columns omega); }
+        .slider { @include span(last $columns); }
         .fd-form-element-hidden { display: none; }
 
         .labels {
@@ -101,11 +101,11 @@
 
     .item.vertical {
       .main {
-        @include span-columns($label-columns);
+        @include span($label-columns);
       }
 
       .description-and-fields {
-        @include span-columns($field-columns omega);
+        @include span($field-columns omega);
         float: left;
         .description { @include text; }
       }
@@ -113,23 +113,23 @@
       &.radio,
       &.check_box {
         .option {
-          @include span-columns($field-columns omega, $field-columns);
+          @include span(last $field-columns of $field-columns);
 
-          .radiocheckwrapper { @include span-columns(1, $field-columns); }
-          .labelwrapper { @include span-columns($field-columns - 1 omega, $field-columns); }
+          .radiocheckwrapper { @include span(1 of $field-columns); }
+          .labelwrapper { @include span(last $field-columns - 1 of $field-columns); }
 
           &.show_values {
-            .value { @include span-columns(1, $field-columns); }
-            .labelwrapper { @include span-columns($field-columns - 2 omega, $field-columns); }
+            .value { @include span(1 of $field-columns); }
+            .labelwrapper { @include span(last $field-columns - 2 of $field-columns); }
           }
 
           .subquestions {
             @include pre(1);
-            @include span-columns($field-columns - 1, $field-columns);
+            @include span($field-columns - 1 of $field-columns);
 
             .item {
-              @include span-columns($field-columns - 1, $field-columns);
-              .main { @include span-columns($field-columns - 1 omega, $field-columns - 1); }
+              @include span($field-columns - 1 of $field-columns);
+              .main { @include span(last $field-columns - 1 of $field-columns - 1); }
               input { width: auto; }
             }
 
@@ -144,33 +144,33 @@
           }
         }
 
-        .inner-title { @include span-columns($field-columns omega, $field-columns); }
+        .inner-title { @include span(last $field-columns of $field-columns); }
       }
 
       &.string,
       &.textarea {
-        input, textarea { @include span-columns($field-columns omega, $field-columns); }
+        input, textarea { @include span(last $field-columns of $field-columns); }
         .sized { width: auto; }
       }
 
       &.integer.slider,
       &.float.slider {
-        .slider { @include span-columns($field-columns omega, $field-columns); }
+        .slider { @include span(last $field-columns of $field-columns); }
 
         .slider-label-left {
-          @include span-columns(($field-columns)/2, $field-columns);
+          @include span(($field-columns)/2 of $field-columns);
           text-align: left;
         }
 
         .slider-label-right {
-          @include span-columns(($field-columns)/2 omega, $field-columns);
+          @include span(last ($field-columns)/2 of $field-columns);
           text-align: right;
         }
       }
     }
 
     .progress-bar {
-      @include span-columns($total-columns omega);
+      @include span(last $total-columns);
       margin: 1.5em (-$grid-padding) -1.5em;
       padding: 1.5em $grid-padding;
 
@@ -191,17 +191,17 @@
     }
 
     .buttons {
-      @include span-columns($total-columns omega);
+      @include span(last $total-columns);
       margin: 1.5em (-$grid-padding) -1.5em;
       padding: 1.5em $grid-padding;
       border-bottom: 0;
 
-      .back  { @include span-columns($columns / 4); }
-      .prev  { @include span-columns($columns / 4); }
-      .abort { @include span-columns($columns / 4); text-align: center; display: block; }
-      .print { @include span-columns($columns); text-align: right; }
-      .next  { @include span-columns($columns / 4 omega); text-align: right; }
-      .save  { @include span-columns($columns / 4 omega); text-align: right; }
+      .back  { @include span($columns / 4); }
+      .prev  { @include span($columns / 4); }
+      .abort { @include span($columns / 4); text-align: center; display: block; }
+      .print { @include span($columns); text-align: right; }
+      .next  { @include span(last $columns / 4); text-align: right; }
+      .save  { @include span(last $columns / 4); text-align: right; }
     }
   }
 }

@@ -1,5 +1,5 @@
 .bulk {
-  @include at-breakpoint(35em 24 lt-ie9) {
+  @include susy-breakpoint(35em, 24, lt-ie9) {
     $desktop-columns: 24;
     $label-columns: 12;
     $field-columns: $desktop-columns - $label-columns;
@@ -12,21 +12,21 @@
     background: white;
 
     .buttons {
-      @include span-columns($desktop-columns omega);
+      @include span(last $desktop-columns);
       margin: 1.5em (-$grid-padding) -1.5em;
       padding: 1.5em $grid-padding;
       border-top: 1px dotted #d6d6d6;
       background: #f3f3f3;
 
-      .prev { @include span-columns(6); }
-      .abort { @include span-columns(12); text-align: center; }
-      .print { @include span-columns(12); text-align: center; }
-      .next { @include span-columns(6 omega); text-align: right; }
-      .save { @include span-columns(6 omega); text-align: right; }
+      .prev { @include span(6); }
+      .abort { @include span(12); text-align: center; }
+      .print { @include span(12); text-align: center; }
+      .next { @include span(last 6); text-align: right; }
+      .save { @include span(last 6); text-align: right; }
     }
 
     .panel {
-      @include span-columns($desktop-columns omega);
+      @include span(last $desktop-columns);
 
       h1 {
         font-size: 1.5em;
@@ -43,7 +43,7 @@
 
     .options {
         @include pre(12);
-        @include span-columns(12 omega);
+        @include span(last 12);
         margin-top: 1em;
         .option {
             text-align: center;
@@ -71,7 +71,7 @@
     }
 
       .item {
-        @include span-columns($desktop-columns omega);
+        @include span(last $desktop-columns);
 
         &.errors {
           outline: 1px solid red;
@@ -86,7 +86,7 @@
         }
 
         label.main {
-          @include span-columns($label-columns);
+          @include span($label-columns);
           //font-weight: bold;
           em { font-style: italic; }
           strong { font-weight: bold; }
@@ -98,7 +98,7 @@
         }
 
         .description-and-fields {
-          @include span-columns($field-columns omega);
+          @include span(last $field-columns);
           .description { @include text; }
         }
 
@@ -129,12 +129,12 @@
           input { width: 99%; }
 
           .slider-label-left {
-            @include span-columns(6);
+            @include span(6);
             text-align: left;
           }
 
           .slider-label-right {
-            @include span-columns(6 omega);
+            @include span(6 omega);
             text-align: right;
           }
 
@@ -143,24 +143,24 @@
         &.bulkitem {
             padding: 0.5em 0em 0.5em 0.5em;
             &.radio, &.check_box, &.scale {
-                .fields.options1  table { @include span-columns( 1 omega); @include post(17); }
-                .fields.options2  table { @include span-columns( 2 omega); @include post(16); }
-                .fields.options3  table { @include span-columns( 3 omega); @include post(15); }
-                .fields.options4  table { @include span-columns( 4 omega); @include post(14); }
-                .fields.options5  table { @include span-columns( 5 omega); @include post(13); }
-                .fields.options6  table { @include span-columns( 6 omega); @include post(12); }
-                .fields.options7  table { @include span-columns( 7 omega); @include post(11); }
-                .fields.options8  table { @include span-columns( 8 omega); @include post(10); }
-                .fields.options9  table { @include span-columns( 9 omega); @include post( 9); }
-                .fields.options10 table { @include span-columns(10 omega); @include post( 8); }
-                .fields.options11 table { @include span-columns(11 omega); @include post( 7); }
-                .fields.options12 table { @include span-columns(12 omega); @include post( 6); }
-                .fields.options13 table { @include span-columns(13 omega); @include post( 5); }
-                .fields.options14 table { @include span-columns(14 omega); @include post( 4); }
-                .fields.options15 table { @include span-columns(15 omega); @include post( 3); }
-                .fields.options16 table { @include span-columns(16 omega); @include post( 2); }
-                .fields.options17 table { @include span-columns(17 omega); @include post( 1); }
-                .fields.options18 table { @include span-columns(18 omega);                    }
+                .fields.options1  table { @include span(last  1); @include post(17); }
+                .fields.options2  table { @include span(last  2); @include post(16); }
+                .fields.options3  table { @include span(last  3); @include post(15); }
+                .fields.options4  table { @include span(last  4); @include post(14); }
+                .fields.options5  table { @include span(last  5); @include post(13); }
+                .fields.options6  table { @include span(last  6); @include post(12); }
+                .fields.options7  table { @include span(last  7); @include post(11); }
+                .fields.options8  table { @include span(last  8); @include post(10); }
+                .fields.options9  table { @include span(last  9); @include post( 9); }
+                .fields.options10 table { @include span(last 10); @include post( 8); }
+                .fields.options11 table { @include span(last 11); @include post( 7); }
+                .fields.options12 table { @include span(last 12); @include post( 6); }
+                .fields.options13 table { @include span(last 13); @include post( 5); }
+                .fields.options14 table { @include span(last 14); @include post( 4); }
+                .fields.options15 table { @include span(last 15); @include post( 3); }
+                .fields.options16 table { @include span(last 16); @include post( 2); }
+                .fields.options17 table { @include span(last 17); @include post( 1); }
+                .fields.options18 table { @include span(last 18);                    }
                 // more than 18 options is future work
 
                 &.horizontal {
@@ -168,7 +168,7 @@
                     .description { float: none; display: table-cell; }
                 }
                 .options {
-                    @include span-columns(12 omega);
+                    @include span(last 12);
                     @include pre(12);
                     margin-top: 1em;
                 }
@@ -179,12 +179,12 @@
         }
 
         &.notbulkitem {
-          @include span-columns($desktop-columns omega);
+          @include span(last $desktop-columns);
           padding: 0.5em 0em 0.5em 0.5em;
           margin-bottom: 1em;
 
           .main {
-            @include span-columns($label-columns);
+            @include span($label-columns);
             em {
                 font-style: italic;
             }
@@ -192,27 +192,27 @@
 
           &.radio, &.check_box, &.scale {
             .inner-title {
-              @include span-columns($field-columns omega, $field-columns);
+              @include span(last $field-columns of $field-columns);
               margin-top: 1.5em;
               margin-bottom: 1.5em;
               font-weight: bold;
             }
 
             .option {
-              @include span-columns($field-columns omega, $field-columns);
+              @include span(last $field-columns of $field-columns);
               // display: block;
               .radiocheckwrapper {
-                @include span-columns(1, $field-columns);
+                @include span(1 of $field-columns);
               }
               .labelwrapper      {
-                @include span-columns($field-columns - 1 omega, $field-columns);
+                @include span(last $field-columns - 1 of $field-columns);
                 label { white-space: normal; }
                 p { display: inline; }
               }
 
               &.show_values {
                 .value {
-                  @include span-columns(1, $field-columns);
+                  @include span(1 of $field-columns);
                   text-align: center;
                 }
                 //.labelwrapper { @include span-columns(16, true); }
@@ -220,10 +220,10 @@
 
               .subquestions {
                   @include pre(1);
-                  @include span-columns($field-columns - 1, $field-columns);
+                  @include span($field-columns - 1 of $field-columns);
 
                   .item {
-                       @include span-columns($field-columns - 1, $field-columns);
+                       @include span($field-columns - 1 of $field-columns);
                        input { width: auto; }
                   }
               }

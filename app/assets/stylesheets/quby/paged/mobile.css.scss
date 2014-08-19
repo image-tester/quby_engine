@@ -15,7 +15,7 @@
   }
 
   .item {
-    @include span-columns($columns omega);
+    @include span(last $columns);
     margin-bottom: 18px;
   }
 
@@ -24,12 +24,12 @@
     &.radio,
     &.check_box {
       .option {
-        @include span-columns($columns omega);
-        .radiocheckwrapper { @include span-columns(1); }
-        .labelwrapper { @include span-columns($columns - 1 omega); }
+        @include span(last $columns);
+        .radiocheckwrapper { @include span(1); }
+        .labelwrapper { @include span(last $columns - 1); }
 
         // &.show_values {
-        //   .value { @include span-columns(1); }
+        //   .value { @include span(1); }
         //   .labelwrapper { @include span-columns($columns - 2 omega); }
         // }
 
@@ -48,13 +48,13 @@
 
     &.string,
     &.textarea {
-      input, textarea { @include span-columns($columns omega) }
+      input, textarea { @include span(last $columns) }
       .sized { width: auto; }
     }
 
     &.integer.slider,
     &.float.slider {
-      .slider { @include span-columns($columns omega); }
+      .slider { @include span(last $columns); }
 
       .labels {
         position: relative;
@@ -79,7 +79,7 @@
   }
 
   .progress-bar {
-    @include span-columns($columns omega);
+    @include span(last $columns);
     margin-left: -$grid-padding;
     margin-right: -$grid-padding;
     padding: 1.5em $grid-padding;
@@ -101,18 +101,18 @@
   }
 
   .buttons {
-    @include span-columns($columns omega);
+    @include span(last $columns);
     margin-left: -$grid-padding;
     margin-right: -$grid-padding;
     padding: 1.5em $grid-padding;
     border-bottom: 1px dotted #d0d0d0;
 
-    .back  { @include span-columns($columns / 2); }
-    .prev  { @include span-columns($columns / 2); }
-    .next  { @include span-columns($columns / 2 omega); text-align: right; }
+    .back  { @include span($columns / 2); }
+    .prev  { @include span($columns / 2); }
+    .next  { @include span(last $columns / 2); text-align: right; }
     .abort { display: none; }
     .print { display: none; }
-    .print { @include span-columns($columns);           text-align: right; }
-    .save  { @include span-columns($columns / 2 omega); text-align: right; }
+    .print { @include span($columns);           text-align: right; }
+    .save  { @include span(last $columns / 2); text-align: right; }
   }
 }

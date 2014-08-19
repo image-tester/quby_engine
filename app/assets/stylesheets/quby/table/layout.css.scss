@@ -55,7 +55,7 @@
                 &.inner_row td{border:0;}
                 &:first-child td{border-top:1px solid #bbb;}
 
-                @include span-columns($total-columns omega);
+                @include span(last $total-columns);
                 float:none;
                 display:table-row;
 
@@ -91,7 +91,7 @@
             margin:0;
         }
         .item {
-            @include reset-columns;
+            @include full;
         }
         .main {
             width: (100%/3);
